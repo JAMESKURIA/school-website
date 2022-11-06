@@ -382,6 +382,11 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
+kutty@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/kutty/-/kutty-0.6.0.tgz#7ec19722bfbe58c1dc546821d71d148e1e7590c8"
+  integrity sha512-QI4qt0aDMG05BH845B16u9Fun5tBfpNcD89Yky4suU5iwmu5P3xPEcoRSDl9E7/WU5kfjuzTK1XzStglkd3Msg==
+
 lilconfig@^2.0.5, lilconfig@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.6.tgz#32a384558bd58af3d4c6e077dd1ad1d397bc69d4"
