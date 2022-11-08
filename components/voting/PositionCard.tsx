@@ -1,36 +1,42 @@
 import Image from "next/image";
 import React from "react";
+import { IPosition } from "../../datatypes";
 import ProfileCard from "./ProfileCard";
 
-const PositionCard = () => {
+type Props = {
+  position: IPosition;
+};
+
+const PositionCard: React.FC<Props> = ({ position }) => {
   const [showCandidates, setShowCandidates] = React.useState(false);
   const [chosenCandidate, setChosenCandidate] = React.useState<{
     name: string;
-    value: string;
-  }>({ name: "", value: "" });
+    id: string;
+  }>({ name: "", id: "" });
 
   const changeChosenCandidate = ({
     name,
     value,
   }: {
-    name: string;
+    name?: string;
     value: string;
   }) => {
-    // console.log({ name, value });
-    setChosenCandidate({ name, value });
+    const { id: candidateId, name: candidateName } = JSON.parse(value);
+
+    setChosenCandidate({ id: candidateId, name: candidateName });
   };
 
   return (
     <div className="my-10">
       <div className="flex items-center gap-2">
-        <label className="block text-sm mb-1" htmlFor="moderator">
-          Moderator:
+        <label className="block text-sm mb-1 capitalize" htmlFor="moderator">
+          {position.name}:
         </label>
         <input
           className="form-input rounded-none"
           type="email"
           placeholder="moderator"
-          id="moderator"
+          id={position.name.toLowerCase().replace(" ", "")}
           required
           disabled
           value={chosenCandidate.name}
@@ -54,12 +60,15 @@ const PositionCard = () => {
         </button>
       </div>
       <ul className={`${!showCandidates ? "hidden" : "block"}`}>
-        <li>
-          <ProfileCard changeChosenCandidate={changeChosenCandidate} />
-        </li>
-        <li>
-          <ProfileCard changeChosenCandidate={changeChosenCandidate} />
-        </li>
+        {position.candidates.length &&
+          position.candidates.map((candidate) => (
+            <li key={candidate.id.toString()}>
+              <ProfileCard
+                candidate={candidate}
+                changeChosenCandidate={changeChosenCandidate}
+              />
+            </li>
+          ))}
       </ul>
     </div>
   );
