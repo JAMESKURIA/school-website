@@ -9,21 +9,10 @@ type Props = {
 
 const PositionCard: React.FC<Props> = ({ position }) => {
   const [showCandidates, setShowCandidates] = React.useState(false);
-  const [chosenCandidate, setChosenCandidate] = React.useState<{
-    name: string;
-    id: string;
-  }>({ name: "", id: "" });
+  const [chosenCandidate, setChosenCandidate] = React.useState("");
 
-  const changeChosenCandidate = ({
-    name,
-    value,
-  }: {
-    name?: string;
-    value: string;
-  }) => {
-    const { id: candidateId, name: candidateName } = JSON.parse(value);
-
-    setChosenCandidate({ id: candidateId, name: candidateName });
+  const changeChosenCandidate = (value: string) => {
+    setChosenCandidate(value);
   };
 
   return (
@@ -32,15 +21,21 @@ const PositionCard: React.FC<Props> = ({ position }) => {
         <label className="block text-sm mb-1 capitalize" htmlFor="moderator">
           {position.name}:
         </label>
-        <input
+        <select
           className="form-input rounded-none"
-          type="email"
-          placeholder="moderator"
-          id={position.name.toLowerCase().replace(" ", "")}
-          required
+          name={position.name.toLowerCase().replace(" ", "")}
+          placeholder="Select a candidate"
           disabled
-          value={chosenCandidate.name}
-        />
+          required
+        >
+          <option value={chosenCandidate}>
+            {
+              position.candidates.find(
+                (candidate) => candidate.id === Number(chosenCandidate)
+              )?.name
+            }
+          </option>
+        </select>
         <button
           type="button"
           className="btn btn-light-secondary rounded-none flex items-center gap-2 px-6"
@@ -55,7 +50,7 @@ const PositionCard: React.FC<Props> = ({ position }) => {
             }`}
             height={10}
             width={10}
-            alt="chevrondown"
+            alt="chevron"
           />
         </button>
       </div>
@@ -66,6 +61,7 @@ const PositionCard: React.FC<Props> = ({ position }) => {
               <ProfileCard
                 candidate={candidate}
                 changeChosenCandidate={changeChosenCandidate}
+                position={position.name.replace(" ", "").toLowerCase()}
               />
             </li>
           ))}

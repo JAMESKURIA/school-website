@@ -42,7 +42,29 @@ const Register = () => {
           </label>
           <label className="block">
             <span className="block mb-1 text-xs font-medium text-gray-700">
+              Phone Number
+            </span>
+            <input
+              className="form-input"
+              type="text"
+              placeholder="254700232323"
+              required
+            />
+          </label>
+          <label className="block">
+            <span className="block mb-1 text-xs font-medium text-gray-700">
               Create a password
+            </span>
+            <input
+              className="form-input"
+              type="password"
+              placeholder="••••••••"
+              required
+            />
+          </label>
+          <label className="block">
+            <span className="block mb-1 text-xs font-medium text-gray-700">
+              Confirm password
             </span>
             <input
               className="form-input"

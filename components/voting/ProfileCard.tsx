@@ -3,29 +3,24 @@ import React from "react";
 import { ICandidate } from "../../datatypes";
 
 interface IProps {
+  position: string;
   candidate: ICandidate;
-  changeChosenCandidate: ({
-    name,
-    value,
-  }: {
-    name?: string;
-    value: string;
-  }) => void;
+  changeChosenCandidate: (value: string) => void;
 }
 
 const ProfileCard: React.FC<IProps> = ({
   changeChosenCandidate,
   candidate,
+  position,
 }) => {
   const handleCandidateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    changeChosenCandidate({ value });
+    changeChosenCandidate(e.target.value);
   };
 
   return (
     <div className="flex w-full justify-between items-center border-gray-200 border-b">
       <div className="avatar-text flex-1 p-3">
-        <div className="avatar">
+        <div className="avatar rounded-none">
           <Image
             src={`/${candidate.image}`}
             layout="fill"
@@ -41,8 +36,8 @@ const ProfileCard: React.FC<IProps> = ({
       <input
         type="radio"
         className="form-radio border-gray-500"
-        name="radio"
-        value={JSON.stringify({ name: candidate.name, id: candidate.id })}
+        name={position}
+        value={candidate.id}
         onChange={(e) => handleCandidateChange(e)}
       />
     </div>
