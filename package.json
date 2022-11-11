@@ -6,10 +6,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "firebase": "^9.13.0",
     "kutty": "^0.6.0",
     "next": "latest",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.39.3",
+    "react-toastify": "^9.1.1"
   },
   "devDependencies": {
     "@types/node": "18.11.3",
