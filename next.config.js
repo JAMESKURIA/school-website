@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["kutty.netlify.app"]
+    domains: ["kutty.netlify.app", "cdn.sanity.io"],
   }
 }

@@ -19,19 +19,21 @@ const PositionCard: React.FC<Props> = ({ position }) => {
     <div className="my-10">
       <div className="flex items-center gap-2">
         <label className="block text-sm mb-1 capitalize" htmlFor="moderator">
-          {position.name}:
+          {position?.title}:
         </label>
         <select
           className="form-input rounded-none"
-          name={position.name.toLowerCase().replace(" ", "")}
+          name={position.title?.toLowerCase().replace(" ", "")}
           placeholder="Select a candidate"
           disabled
           required
+          // value={chosenCandidate}
+          // defaultValue={position?.title!}
         >
           <option value={chosenCandidate}>
             {
-              position.candidates.find(
-                (candidate) => candidate.id === Number(chosenCandidate)
+              position?.candidates?.find(
+                (candidate) => candidate?._id === chosenCandidate
               )?.name
             }
           </option>
@@ -55,13 +57,13 @@ const PositionCard: React.FC<Props> = ({ position }) => {
         </button>
       </div>
       <ul className={`${!showCandidates ? "hidden" : "block"}`}>
-        {position.candidates.length &&
+        {position?.candidates?.length &&
           position.candidates.map((candidate) => (
-            <li key={candidate.id.toString()}>
+            <li key={candidate?._id?.toString()}>
               <ProfileCard
                 candidate={candidate}
                 changeChosenCandidate={changeChosenCandidate}
-                position={position.name.replace(" ", "").toLowerCase()}
+                position={position?.title?.replace(" ", "").toLowerCase()!}
               />
             </li>
           ))}

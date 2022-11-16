@@ -26,9 +26,11 @@ const Login = () => {
       {
         pending: "logging in...",
         success: {
-          render: () => {
+          render: (data) => {
+            console.log(data);
             reset();
-            return "Logged in successfully";
+            // @ts-ignore
+            return `Welcome back ${data?.data?.email}`;
           },
         },
         error: {
@@ -40,7 +42,6 @@ const Login = () => {
               error?.data?.message
                 ?.toLowerCase()
                 .replace("firebase", "")
-
                 .replace(":", "")
                 .replace("/", "")
                 .replace("error", "")
